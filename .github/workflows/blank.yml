@@ -73,11 +73,12 @@ jobs:
           IS_DEBUG_KERNEL: ${{ inputs.debug }}
         run: |
           cd $GITHUB_WORKSPACE/android-kernel
+          rm -rf KernelSU && git clone https://github.com/tiann/KernelSU -b v0.9.4
           echo "[+] KernelSU setup"
           GKI_ROOT=$(pwd)
           echo "[+] GKI_ROOT: $GKI_ROOT"
           echo "[+] Copy KernelSU driver to $GKI_ROOT/common/drivers"
-          ln -sf $GITHUB_WORKSPACE/KernelSU/kernel $GKI_ROOT/common/drivers/kernelsu
+          ln -sf KernelSU/kernel $GKI_ROOT/common/drivers/kernelsu
           echo "[+] Add KernelSU driver to Makefile"
           DRIVER_MAKEFILE=$GKI_ROOT/common/drivers/Makefile
           DRIVER_KCONFIG=$GKI_ROOT/common/drivers/Kconfig
