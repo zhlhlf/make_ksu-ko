@@ -142,7 +142,8 @@ jobs:
         run: |
           mkdir 666
           cp -r `find -name "kernelsu.ko" | sed -n 1p` 666/ || echo "no found ko"
-          cp -r `find -name "Image"` 666/ || echo 
+          cp -r `find -name "Image" | sed -n 1p` 666/ || echo 
+          ls 666
           llvm-strip-15 -d 666/kernelsu.ko
 
       - name: Upload LKM
