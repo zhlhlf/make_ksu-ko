@@ -99,7 +99,7 @@ jobs:
           sudo apt-get install llvm-15 -y
           
           #去模块生成error
-          #sed -i s/'static int warn_unresolved = 0'/'static int warn_unresolved = 1'/g common/scripts/mod/modpost.c
+          sed -i s/'static int warn_unresolved = 0'/'static int warn_unresolved = 1'/g common/scripts/mod/modpost.c
           
           ast-grep -U -p '$$$ check_exports($$$) {$$$}' -r '' common/scripts/mod/modpost.c
           ast-grep -U -p 'check_exports($$$);' -r '' common/scripts/mod/modpost.c
@@ -141,7 +141,7 @@ jobs:
       - name: Prepare artifacts
         run: |
           mkdir 666
-          cp -r `find -name "kernelsu.ko"` 666/ || echo "no found ko"
+          cp -r `find -name "kernelsu.ko" | sed -n 1p` 666/ || echo "no found ko"
           cp -r `find -name "Image"` 666/ || echo 
           llvm-strip-15 -d 666/kernelsu.ko
 
