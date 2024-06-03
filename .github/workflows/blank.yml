@@ -73,7 +73,7 @@ jobs:
           IS_DEBUG_KERNEL: ${{ inputs.debug }}
         run: |
           cd $GITHUB_WORKSPACE/android-kernel
-          rm -rf KernelSU && git clone https://github.com/tiann/KernelSU -b v0.9.4
+          rm -rf KernelSU && git clone https://github.com/tiann/KernelSU -b v0.9.0
           echo "[+] KernelSU setup"
           GKI_ROOT=$(pwd)
           echo "[+] GKI_ROOT: $GKI_ROOT"
